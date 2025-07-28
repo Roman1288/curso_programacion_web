@@ -1,0 +1,31 @@
+{
+  "name": "curso_programacion_web",
+  "version": "1.0.0",
+  "description": "Aplicación para la gestión de clientes y usuarios.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Roman1288/curso_programacion_web.git"
+  },
+  "keywords": [
+    "CRM",
+    "JavaScript",
+    "NodeJs"
+  ],
+  "author": "Curso JRPE",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Roman1288/curso_programacion_web/issues"
+  },
+  "homepage": "https://github.com/Roman1288/curso_programacion_web#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

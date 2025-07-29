@@ -1,0 +1,18 @@
+Verbos HTTP
+
+GET -> Obtener la información del servidor.
+POST -> Enviar información al servidor.
+PUT -> Enviar información al servidor pero para actualizar (objeto completo).
+        {
+         "nombre": "azael",
+         "apellidos": "garcia",
+         "edad": 26
+        }
+PATCH -> Enviar información al servidor pero para actualizar (solo un atributo).
+        Normalmente se usa en booleanos para cambiarlos
+        {
+         "nombre": "azael"
+        }
+DELETE -> Elimina información.
+
+Son peticiones que hacemos al servidor.

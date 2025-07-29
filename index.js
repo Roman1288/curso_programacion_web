@@ -26,3 +26,15 @@ console.log(1 + 1);
 */
 
 
+//Armado de aplicación
+import express from "express";
+
+const app = express();
+//Asignación de puerto
+//El puerto es un número que identifica un proceso en ejecución en el sistema operativo
+const port = 3000;
+
+//Crea un servidor web que escucha en el puerto especificado
+app.listen(port, () => {
+  console.log(`Servidor funcionando en http://localhost:${port}`);
+});

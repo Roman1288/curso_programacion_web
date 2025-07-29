@@ -16,3 +16,10 @@ PATCH -> Enviar información al servidor pero para actualizar (solo un atributo)
 DELETE -> Elimina información.
 
 Son peticiones que hacemos al servidor.
+_______________________________________________________________________________________________
+Patrón de diseño MVC
+
+M = Modelo -> Serían los esquemas de bases de datos. Nosotros creamos los modelos con Node y Express    
+              definiendolos desde código y MongoDB ya crea las tablas en automático.
+V = Vista -> La vista es el Frontend, usaremos React. Es la información que se pinta en la pantalla.
+C = Controlador -> Es un intermediario entre el modelo y la vista. Es como un manejador de información.

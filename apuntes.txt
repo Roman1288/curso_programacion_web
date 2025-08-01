@@ -23,3 +23,9 @@ M = Modelo -> Serían los esquemas de bases de datos. Nosotros creamos los model
               definiendolos desde código y MongoDB ya crea las tablas en automático.
 V = Vista -> La vista es el Frontend, usaremos React. Es la información que se pinta en la pantalla.
 C = Controlador -> Es un intermediario entre el modelo y la vista. Es como un manejador de información.
+________________________________________________________________________________________________
+Mongoose es un ORM
+O - Object
+R - Relational
+M - Mapping
+Es una técnica que permite interactuar con la base de datos relacional y no relacional usando código orientado a objetos (métodos, funciones y clases). Convierte todo a un objeto. Traduce la estructura de una base datos. Las tablas, las filas, las columnas, etc. y los vuelve objetos.

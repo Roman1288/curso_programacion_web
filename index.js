@@ -29,10 +29,20 @@ console.log(1 + 1);
 //Armado de aplicación
 import express from "express";
 
+//Tenemos que decirle a Node que vamos a usar variables de entorno y las entienda
+import dotenv from "dotenv";
+
+//Importamos la función connectDB desde el archivo config/db.js
+import { connectDB } from "./config/db.js";
+
 const app = express();
+dotenv.config(); //Cargar las variables de entorno desde el archivo .env
+
 //Asignación de puerto
 //El puerto es un número que identifica un proceso en ejecución en el sistema operativo
 const port = 3000;
+
+connectDB(); //Llamamos a la función connectDB para conectar a la base de datos
 
 //Crea un servidor web que escucha en el puerto especificado
 app.listen(port, () => {

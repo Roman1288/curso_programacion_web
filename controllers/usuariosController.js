@@ -42,3 +42,67 @@ export const obtenerUsuarios = async (req, res) => {
     res.status(500).send("Error en el servidor al obtener los usuarios");
   }
 }
+
+export const eliminarUsuario = async (req, res) => {
+  try {
+    const { id } = req.params; //req.params es un objeto que contiene los parámetros de la ruta. En este caso, se obtiene el id del usuario a eliminar.
+    const usuario = await Usuario.findById(id); //findById es un método de mongoose que busca un documento por su id.
+
+    if (!usuario) {
+      //Not found
+      return res.status(404).json({ msg: "Usuario no encontrado" });
+    }
+
+    await Usuario.findByIdAndDelete({ _id: id }); //Si el usuario existe, se elimina de la base de datos.
+
+    res.json({ msg: "Usuario eliminado correctamente" }); //Se envía un mensaje de éxito como respuesta.
+    //res.json(usuario); //También podríamos enviar el usuario eliminado como respuesta.
+
+    console.log(usuario);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error en el servidor al eliminar el usuario");
+  }
+}
+
+export const actualizarUsuario = async (req, res) => {
+  try {
+    const { nombre, apellidos, correo, password } = req.body; //Desestructuramos los datos del usuario que se envían en el cuerpo de la petición.
+    const { id } = req.params; //Obtenemos el id del usuario a actualizar
+    const usuarioActualizar = {}; //Creamos un objeto vacío para almacenar los datos a actualizar.
+
+    if (nombre) {
+      usuarioActualizar.nombre = nombre; //Si se envió un nombre, lo agregamos al objeto usuarioActualizar.
+    }
+
+    //Otra forma de escribir los if:
+    if (apellidos) usuarioActualizar.apellidos = apellidos; //Si se envió un apellido, lo agregamos al objeto usuarioActualizar.
+
+    if (correo) usuarioActualizar.correo = correo; //Si se envió un correo, lo agregamos al objeto usuarioActualizar.
+
+    if (password) {
+      usuarioActualizar.password = password; //Si se envió una contraseña, lo agregamos al objeto usuarioActualizar.
+    }
+
+    console.log(usuarioActualizar); //Mostramos el objeto usuarioActualizar en la consola para verificar los datos a actualizar.
+
+    //Verificar si el usuario existe en la base de datos.
+    let usuarioExiste = await Usuario.findById(id); //Buscamos el usuario por su id.
+
+    if (!usuarioExiste) {
+      return res.status(404).json({ msg: "Usuario no encontrado" }); //Si no se encuentra el usuario, enviamos un mensaje de error.
+    }
+
+    //Si el usuario existe, actualizamos sus datos.
+    usuarioExiste = await Usuario.findByIdAndUpdate(
+      { _id: id },
+      { $set: usuarioActualizar }, //Si escuchamos a MongoDB, el $set es un operador que se usa para actualizar campos específicos de un documento.
+      { new: true } //new: true indica que queremos que se nos devuelva el documento actualizado.
+    ); //findByIdAndUpdate es un método de mongoose que actualiza un documento por su id. Le pasamos el id del usuario, el objeto con los datos a actualizar y un objeto vacío para usar las opciones por defecto.
+
+    res.json(usuarioExiste); //Enviamos el usuario actualizado como respuesta en formato JSON.  
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error en el servidor al actualizar el usuario"); //Manejamos cualquier error que ocurra durante el proceso.
+  }
+}

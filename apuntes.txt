@@ -40,3 +40,8 @@ Cuando las APIs ya están en internet, tiene que ser https si no el Frontend no 
 Ejemplo de URL de API: talkweb.com.mx/api/usuarios
 
 La nuestra seria http://localhost:3000/api/usuarios
+________________________________________________________________________________________________
+En el archivo Usuario.js que es donde se declara, se le conoce como esquema
+En el archivo usuariosController.js que es donde la base de datos ya existe, se le conoce como colecciones.
+A las tablas se les conoce como colecciones.
+Y a los registros se les conoce como documento.

@@ -29,3 +29,14 @@ O - Object
 R - Relational
 M - Mapping
 Es una técnica que permite interactuar con la base de datos relacional y no relacional usando código orientado a objetos (métodos, funciones y clases). Convierte todo a un objeto. Traduce la estructura de una base datos. Las tablas, las filas, las columnas, etc. y los vuelve objetos.
+________________________________________________________________________________________________
+API también se le conoce como endpoint y hace referenecia a una URL.
+API significa Interfaz de Programación de Aplicaciones
+API es un conjunto de reglas y protocolos que permite a las aplicaciones comunicarse entre si. 
+Las reglas son los verbos GET, POST, DELETE, PUT y PATCH.
+Los protocolos son los http y https. El http no tiene un protocolo de certificado de seguridad. Es poco comun usar aplicaciones web sin el certificado. Por el momento se usa porque es local y se esta desarrollando.
+Cuando las APIs ya están en internet, tiene que ser https si no el Frontend no las acepta. Es peligroso consumir http.
+
+Ejemplo de URL de API: talkweb.com.mx/api/usuarios
+
+La nuestra seria http://localhost:3000/api/usuarios

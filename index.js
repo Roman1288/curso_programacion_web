@@ -35,6 +35,8 @@ import dotenv from "dotenv";
 //Importamos la función connectDB desde el archivo config/db.js
 import { connectDB } from "./config/db.js";
 
+import UsuariosRouter from "./routes/usuario.js"; //Importamos las rutas de usuario
+
 const app = express();
 dotenv.config(); //Cargar las variables de entorno desde el archivo .env
 
@@ -44,7 +46,12 @@ const port = 3000;
 
 connectDB(); //Llamamos a la función connectDB para conectar a la base de datos
 
+app.use(express.json({ extended: true })); //Middleware para parsear el cuerpo de las peticiones en formato JSON
+
 //Crea un servidor web que escucha en el puerto especificado
 app.listen(port, () => {
   console.log(`Servidor funcionando en http://localhost:${port}`);
 });
+
+//Definimos las rutas de la aplicación
+app.use('/api/usuarios', UsuariosRouter); //Asociamos las rutas de usuario al prefijo /api/usuarios

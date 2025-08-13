@@ -2,6 +2,9 @@
 //Un modelo es una representación de los datos que se guardan en la base de datos.
 import mongoose from "mongoose";
 
+//Importamos la libreria bcrypt para encriptar las contraseñas
+import bcrypt from "bcrypt";
+
 //Esquema de usuario. Cuando esta en la base de datos se le conoce como colección.
 //El esquema es la estructura de los datos que se guardan en la base de datos.
 const usuarioSchema = mongoose.Schema({
@@ -33,6 +36,26 @@ const usuarioSchema = mongoose.Schema({
 {
   timestamps: true //Crea los campos createdAt y updatedAt automáticamente
 });
+
+//Declaration
+//Aquí le digo que se ejecute esta función antes de guardar el usuario en la base de datos
+usuarioSchema.pre('save', async function(next) {
+  //Solo se encripta la contraseña que no han sido hasheadas. Tenemos que validar que no se haya modificado o encriptado la contraseña.
+  //Hay funciones function expression y function declaration. Esta es una función declaration. El this hace referencia al usuario que se va a guardar en la base de datos (Objeto actual).
+  if(!this.isModified('password')) {
+    next(); //Si la contraseña no ha sido modificada, se pasa a la siguiente función
+  }
+
+  //Si la contraseña ha sido modificada, se encripta.
+  const salt = await bcrypt.genSalt(10); //Genera un salt de 10 rondas. El salt es un valor aleatorio que se usa para encriptar la contraseña.
+  this.password = await bcrypt.hash(this.password, salt); //Encripta la contraseña con el salt generado. bcrypt.hash es una función que encripta la contraseña con el salt.
+})
+
+//vamos a crear un método para comparar la contraseña ingresada por el usuario con la contraseña guardada en la base de datos
+usuarioSchema.methods.comprobarPassword = async function(passwordFormulario) {
+  //this hace referencia al usuario que se va a autenticar. El password es la contraseña ingresada por el usuario.
+  return await bcrypt.compare(passwordFormulario, this.password); //bcrypt.compare es una función que compara la contraseña ingresada con la contraseña guardada en la base de datos.
+}
 
 const Usuario = mongoose.model('Usuario', usuarioSchema);
 

@@ -4,6 +4,7 @@
 import Usuario from '../models/Usuario.js';
 
 //req es la petición que viene del cliente (frontend), y res es la respuesta que se enviará al cliente (frontend).
+//En postman es usar POST
 export const crearUsuario = async (req, res) => {
   try {
     const { correo } = req.body; //req.body es un objeto que contiene los datos enviados en el cuerpo de la petición. Y se le hace destructuring para obtener el correo.
@@ -18,6 +19,11 @@ export const crearUsuario = async (req, res) => {
 
     //Si el correo no existe, se crea un nuevo usuario.
     const usuario = new Usuario(req.body); //req.body contiene los datos del usuario que se envían en la petición. Se crea una instancia del modelo Usuario con esos datos.
+    
+    //En el archivo del modelo Usuario.js, se ejecuta primero la linea 38 (usuarioSchema.pre('save', async function(next)) que es una función para encriptar la contraseña antes de guardar el usuario en la base de datos.
+    //Esta función se ejecuta antes de guardar el usuario en la base de datos. Ya se ejecuta la siguiente línea.
+    //El middleware pre de mongoose se usa para ejecutar una función antes de guardar un documento en la base de datos. En este caso, se usa para encriptar la contraseña del usuario antes de guardarla en la base de datos.
+    
     await usuario.save(); //Se guarda el usuario en la base de datos.
     res.json(usuario); //Se envía el usuario creado como respuesta en formato JSON.
 
@@ -27,7 +33,7 @@ export const crearUsuario = async (req, res) => {
   }
 }
 
-
+//En postman es usar GET
 export const obtenerUsuarios = async (req, res) => {
   try {
     const usuarios = await Usuario.find(); //find() sin parámetros devuelve todos los documentos de la colección Usuario.
@@ -43,6 +49,9 @@ export const obtenerUsuarios = async (req, res) => {
   }
 }
 
+//En postman es usar DELETE
+//Y la URL debe ser http://localhost:4000/api/usuarios/:id(67765drfs545445sf67be7bd7f6)
+//El :id es un parámetro de la ruta que se usa para identificar el usuario a eliminar.
 export const eliminarUsuario = async (req, res) => {
   try {
     const { id } = req.params; //req.params es un objeto que contiene los parámetros de la ruta. En este caso, se obtiene el id del usuario a eliminar.
@@ -65,6 +74,15 @@ export const eliminarUsuario = async (req, res) => {
   }
 }
 
+//En postman es usar PUT
+//Y la URL debe ser http://localhost:4000/api/usuarios/:id(67765drfs545445sf67be7bd7f6)
+//Solo lo que voy a modificar en el JSON, por ejemplo 
+/*
+  {
+    "nombre": "Nuevo Nombre",
+    "apellidos": "Nuevos Apellidos",
+  }
+*/
 export const actualizarUsuario = async (req, res) => {
   try {
     const { nombre, apellidos, correo, password } = req.body; //Desestructuramos los datos del usuario que se envían en el cuerpo de la petición.

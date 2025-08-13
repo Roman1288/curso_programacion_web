@@ -45,3 +45,8 @@ En el archivo Usuario.js que es donde se declara, se le conoce como esquema
 En el archivo usuariosController.js que es donde la base de datos ya existe, se le conoce como colecciones.
 A las tablas se les conoce como colecciones.
 Y a los registros se les conoce como documento.
+________________________________________________________________________________________________
+Autenticación
+La dependencia jsonwebtoken es como un string cifrado con información. Ya esta instalada y se ve en el archivo package.json. Lo primero que se tiene que hacer es crear la autenticación, generar el Json Web Token. Primero autenticar y de ahi procesarlo. Se va a crear otro controlador, no será modelo.
+Se creó el archivo authController.js en la carpeta controllers. 
+A parte será la carpeta helpers. Los helpers son funciones utilitarias, son funciones que se pueden reutilizar para otras cosas. En este caso se usará para que genere el Json Web Token. Va a cifrar la información.

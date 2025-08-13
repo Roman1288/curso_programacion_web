@@ -50,3 +50,17 @@ Autenticación
 La dependencia jsonwebtoken es como un string cifrado con información. Ya esta instalada y se ve en el archivo package.json. Lo primero que se tiene que hacer es crear la autenticación, generar el Json Web Token. Primero autenticar y de ahi procesarlo. Se va a crear otro controlador, no será modelo.
 Se creó el archivo authController.js en la carpeta controllers. 
 A parte será la carpeta helpers. Los helpers son funciones utilitarias, son funciones que se pueden reutilizar para otras cosas. En este caso se usará para que genere el Json Web Token. Va a cifrar la información.
+________________________________________________________________________________________________
+Una vez hecha la autenticación, en Postman al poner POST y http://localhost:3000/api/auth/login, pongo un correo y password que esten en mi base de datos y que conozco, y me va a arrojar un token. Que es como el se ve abajo:
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OWNlNzU1MGI5ODBiMjI0OTE3Y2Q0MCIsImlhdCI6MTc1NTEyNTAyMiwiZXhwIjoxNzU3NzE3MDIyfQ.UcjbpJ6JFLZRRNCAA6btN3liiX6VBzyMAixZMzG7jnI
+
+Si voy a jwt.io y pego ese token, me dará como resultado el id del usuario en cuestion.
+________________________________________________________________________________________________
+Los pasos son: 
+Iniciamos sesión, validando las credenciales como correo y password, que es lo que meto en Postman
+Me genera el JWT que es nuestra sesión y este token tiene la información de cuánto va a durar la sesión, en este caso 30 días y el id del usuario. 
+Posteriormente debe haber algo que valide ese token y obtenga el perfil del usuario.
+
+Para esto ultimo tenemos que hacer un Middleware que es como un intermediario. Estos Middlewarese ejecutan antes que los controladores.
+Lo creamos validando el token y nos regresa el perfil, para posteriormente mandarlo al controlador.

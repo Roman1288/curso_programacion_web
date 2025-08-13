@@ -37,6 +37,8 @@ import { connectDB } from "./config/db.js";
 
 import UsuariosRouter from "./routes/usuario.js"; //Importamos las rutas de usuario
 
+import AuthRouter from "./routes/auth.js"; //Importamos las rutas de autenticación
+
 const app = express();
 dotenv.config(); //Cargar las variables de entorno desde el archivo .env
 
@@ -55,3 +57,4 @@ app.listen(port, () => {
 
 //Definimos las rutas de la aplicación
 app.use('/api/usuarios', UsuariosRouter); //Asociamos las rutas de usuario al prefijo /api/usuarios
+app.use("/api/auth", AuthRouter); //Asociamos las rutas de autenticación al prefijo /api/auth

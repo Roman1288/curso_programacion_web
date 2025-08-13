@@ -1,7 +1,7 @@
 //Importamos el Json Web Token de la dependencia o libreria jsonwebtoken
 import jwt from 'jsonwebtoken';
 
-const generarJWT = id => {
+const generarJWT = (id) => {
   // Generamos un token con el id del usuario
   // y lo firmamos con una clave secreta
   //La firma es la información que se va a encriptar y que solo el servidor conoce
@@ -12,8 +12,8 @@ const generarJWT = id => {
   //El token se genera con un tiempo de expiración de 30 días
   //Si alguien hackea, por el tiempo de expiración, el token dejará de ser válido después de 30 días
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: '30d'
+    expiresIn: "30d"
   });
-}
+};
 
 export default generarJWT;

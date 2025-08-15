@@ -29,3 +29,15 @@ export const autenticarUsuario = async (req, res) => {
     res.status(500).send("Hubo un error al autenticar al usuario");
   }
 };
+
+export const perfil = async (req, res) => {
+  try {
+    const { usuario } = req; //Obtenemos el usuario del request, que fue agregado por el middleware de autenticación
+
+    //Retornamos el perfil del usuario
+    res.json(usuario); //Enviamos el usuario como respuesta, sin la contraseña
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Hubo un error al obtener el perfil del usuario");
+  }
+};

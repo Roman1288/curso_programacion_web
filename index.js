@@ -39,6 +39,8 @@ import UsuariosRouter from "./routes/usuario.js"; //Importamos las rutas de usua
 
 import AuthRouter from "./routes/auth.js"; //Importamos las rutas de autenticación
 
+import ClienteRouter from "./routes/cliente.js"; //Importamos las rutas de cliente
+
 const app = express();
 dotenv.config(); //Cargar las variables de entorno desde el archivo .env
 
@@ -58,3 +60,4 @@ app.listen(port, () => {
 //Definimos las rutas de la aplicación
 app.use('/api/usuarios', UsuariosRouter); //Asociamos las rutas de usuario al prefijo /api/usuarios
 app.use("/api/auth", AuthRouter); //Asociamos las rutas de autenticación al prefijo /api/auth
+app.use("/api/clientes", ClienteRouter); //Asociamos las rutas de cliente al prefijo /api/clientes

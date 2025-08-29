@@ -1,3 +1,11 @@
+Clases grabadas donde voy:
+Clase 0 - Concluida
+Clase 1 - Concluida
+Clase 2 - Concluida
+Clase 3 - Concluida
+Clase 4 - 
+_______________________________________________________________________________________________
+
 Verbos HTTP
 
 GET -> Obtener la información del servidor.

@@ -3,7 +3,8 @@ Clase 0 - Concluida
 Clase 1 - Concluida
 Clase 2 - Concluida
 Clase 3 - Concluida
-Clase 4 - 
+Clase 4 - Concluida
+Clase 5 - 
 _______________________________________________________________________________________________
 
 Verbos HTTP
@@ -72,3 +73,30 @@ Posteriormente debe haber algo que valide ese token y obtenga el perfil del usua
 
 Para esto ultimo tenemos que hacer un Middleware que es como un intermediario. Estos Middlewarese ejecutan antes que los controladores.
 Lo creamos validando el token y nos regresa el perfil, para posteriormente mandarlo al controlador.
+________________________________________________________________________________________________
+Frontend
+Crear interfaces con React y consumir la API creada en el backend.
+Usaremos Vite Js
+https://vite.dev/
+
+Create React App se usaba antes para crear proyectos. Todavía se puede encontrar para dar mantenimiento.
+
+https://create-react-app.dev/docs/getting-started/
+
+Webpack 
+Empaqueta todos los archivos del proyecto para subirlo a producción
+
+https://webpack.js.org/
+
+Babel Js es un transpilador de Js y lo que hace es transpilar el código moderno a código compatible con navegadores.
+
+https://babeljs.io/
+
+Resumiendo Vite ya hace todo el trabajo de empaquetar y transpilar.
+________________________________________________________________________________________________
+________________________________________________________________________________________________
+________________________________________________________________________________________________
+________________________________________________________________________________________________
+________________________________________________________________________________________________
+________________________________________________________________________________________________
+________________________________________________________________________________________________

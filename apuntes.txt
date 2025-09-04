@@ -4,7 +4,9 @@ Clase 1 - Concluida
 Clase 2 - Concluida
 Clase 3 - Concluida
 Clase 4 - Concluida
-Clase 5 - 
+Clase 5 - Concluida
+Clase 6 - Concluida
+Clase 7 - 
 _______________________________________________________________________________________________
 
 Verbos HTTP
@@ -74,7 +76,7 @@ Posteriormente debe haber algo que valide ese token y obtenga el perfil del usua
 Para esto ultimo tenemos que hacer un Middleware que es como un intermediario. Estos Middlewarese ejecutan antes que los controladores.
 Lo creamos validando el token y nos regresa el perfil, para posteriormente mandarlo al controlador.
 ________________________________________________________________________________________________
-Frontend
+                                        Frontend
 Crear interfaces con React y consumir la API creada en el backend.
 Usaremos Vite Js
 https://vite.dev/
@@ -94,9 +96,256 @@ https://babeljs.io/
 
 Resumiendo Vite ya hace todo el trabajo de empaquetar y transpilar.
 ________________________________________________________________________________________________
+En el video de la Clase 5 viene como crear un proyecto. Al crearlo, me genera varias carpetas
+
+Solo instalo node_modules.
+En la carpeta Public normalmente se ponen los favicons.
+En la carpeta src, hay una carpeta llamada assets que es donde ponemos imágenes, videos o audios del proyecto.
+
+Se trabajará con una libreria de CSS llamada Material UI.
+https://mui.com/
+https://mui.com/material-ui/getting-started/
+
+Antes de correr el proyecto, hay que instalar la libreria.
+
+Para usar iconos, deben ser instalados, podemos usar el mismo Material UI
+https://mui.com/material-ui/material-icons/
 ________________________________________________________________________________________________
+React es una librería o biblioteca (coloquialmente se dice Framework) y se usa para crear Interfaces de Usuario. Fue creada por Facebook.
+Combina HTML y JavaScript. Maneja funciones y retorna HTML. La extensión es .jsx
+
+En el archivo App.jsx, maneja SPA o Single Page Application, que son aplicaciones de una sola página. Es decir, tenemos una app global y vamos metiendo componentes.
+
+¿Qué es el jsx?
+Significa JavaScript XML y es una extensión para JavaScript que nos permite escribir código similar a HTML dentro de los archivos JavaScript.
+
+const nombre = "Azael"
+inline experssion { nombre }
+
+Creamos una variable y la podemos poner en la vista del navegador con esa sintaxis.
+
+Una característica de React es lo que se llama el DOM virtual.
+
+Por ejemplo en el siguiente código:
+const enlaces = document.querySelectorAll("a");
+console.log(enlaces);
+
+se le llama DOM Scripting. Es Vanilla JavaScript. Por ejemplo en un contador tenemos que repintar todo en pantalla, y gasta mas recursos. Sería:
+const boton = document.querySelector("button");
+Let count = 0;
+boton.innerHTML = count + 1;
+
+En React el DOM Virtual es como una copia ligera que es puramente JavaScript. Ese DOM solo permanece en memoria. No de manera real. Por ejemplo en un contador solo se pinta lo que esta actualizándose. No se repinta todo. Sería:
+const [count, setCount] = useState(0);
+
+<button onClick={() => setCount((count) => count + 1)}>
+        Count is {count}
+</button>
+
+En React un Hook es una función especial que permite enganchar las capacidades internas de React.
+Refrescan una variable.
+
+Por ejemplo aqui:
+
+const [count, setCount] = useState(0);
+
+Crea una variable y una función que refresca esa variable. Su valor inicial es 0.
+
+useState es un Hook que lo que hace es refrescar el valor de una variable y a esto se le llama Reactividad, por eso el nombre de React.
+Esto se refiere a que son variables que pueden mutar o cambiar su valor.
+
+Hay variables no reactivas, es decir su valor no va a cambiar y se maneja la sintaxis tradicional:
+const edad = 18
+
+Para ver su valor ponemos:
+<p> { edad } </p>
+
+Dentro de los return solo podemos poner resultados y parte de la interfaz. No podemos poner if, forEach, etcétera. Solo podemos poner ternarios, por ejemplo:
+
+<>
+  { edad >= 18 ? <p>Eres mayor de edad</p> : <p>Eres menor de edad</p> }
+</>
+
+Estamos renderizando HTML condicional.
+
+Tambien podemos usar map para iterar arreglos. Por ejemplo:
+const meses = ["Enero", "Febrero", "Marzo", "Abril"];
+
+return (
+  <>
+    {meses.map((mes) => (
+      <p>mes</p>
+    ))}
+  </>
+);
+
+return (
+//A esto se le llama fragment que es como un componente vacio. Solo se puede tener uno.
+  <>
+  
+  </>
+);
+
+return (
+//A esto se le llama fragment que es como un componente vacio. Solo se puede tener uno. Y también le puedo poner div.
+  <div>
+  
+  </div>
+);
+
+//Esto ya no se puede hacer.
+return (
+  <>
+  
+  </>
+  <p>
+  
+  </p>
+);
+
+//Otra cosa que podemos hacer es:
+const edad = 18;
+
+//Podemos poner return o renderizado condicional. El return lo que hace es terminar la ejecución del código o retornar un valor.
+//Si se cumple el primer if se ejecuta lo que esta dentro y ya no pasa al siguiente return. Caso contrario, ejecuta el segundo return.
+
+if (edad >= 18) {
+  console.log("Eres mayor de edad");
+  //return; // Termina la ejecución de la función
+  return <p>Eres mayor de edad</p>; //Retorna un valor
+}
+
+return(
+  <>
+    <p>Eres menor de edad</p>
+  </>
+);
 ________________________________________________________________________________________________
+En el hook useEffect, se debe tener mucho cuidado al usarlo ya que puede ciclar la aplicación, es decir, la app empieza a gastar y gastar RAM y se congela hasta que truena.
+
+Su anatomía es la siguiente:
+useEffect(() => {
+  //Cuerpo del useEffect
+  console.log(Ejecutandose....);
+}, []);
+
+Es un hook de React que lo que permite es realizar efectos secundarios en los componentes funcionales.
+En el mismo archivo App.jsx esta un componente funcional.
+function App() {
+
+}
+
+Se usa mas que nada en las peticiones a APIs, manipulación del DOM en renderizados, etcétera.
+Se ejecuta al menos una vez, cada vez que se muestra un componente.
+En este caso la function App es el componente principal. El useEffect se ejecutará cada vez que se recargue el sitio web.
+
+useEffect(() => {
+  //Cuerpo del useEffect
+  console.log(`Cambio el valor ${count}`);
+}, []);
+
+En este ejemplo se ejecuta una sola vez al pintarse o cambia el componente.
+
+Para que se vuelva a ejecutar necesitamos pasarle en el arreglo la variable count.
+
+useEffect(() => {
+  //Cuerpo del useEffect
+  console.log(`Cambio el valor ${count}`);
+}, [count]);
+
+De esta forma cada vez que count cambia, se ejecuta el useEffect.
+Por ejemplo, cambia un codigo postal, y en useEffect pide todos los puntos con ese código.
+
+En desarrollo, en la consola se ejecuta dos veces. En producción solo se ejecuta una sola vez.
+Esto porque se ejecuta el modo estricto. Porque a la hora de montar la aplicación ejecuta los efectos (useEffect), los desmonta y vuelva a montar.
+
+Los componentes son fragmentos de código que son reutilizables.
+
+Puedo borrar App.css, index.css
+
 ________________________________________________________________________________________________
+La librería de Material UI nos ermite usar componentes ya diseñados.
+Por ejemplo:
+Typography .- Me permite poner texto y como lo voy a usar, si como h1-h6, párrafo, etcétera.
+<Typography variant="body2">Desde inicio de sesión.</Typography>;
+
+Box.- Me permite crear un contenedor padre y le indico que sea un div, header, nav, etcétera.
+La ventaja es que box es un componente que nos permite escribir CSS más sencillo.
+
+<Box
+  component="div"
+  sx={{
+    //Objeto CSS
+    display: "flex",
+    justifyContent: "space-between"
+  }}
+>
+  <Typography>HOLA</Typography>
+  <Typography>adios</Typography>
+</Box>
+
+
+Otra forma sería:
+const stylesGlobals = {
+  display: "flex",
+  justifyContent: "space-between"
+};
+
+<Box component="div" sx={stylesGlobals}>
+  <Typography>HOLA</Typography>
+  <Typography>adios</Typography>
+</Box>
+
+
+Otra forma es crear una carpeta llamada styles y dentro un archivo llamado style.js.
+Dentro iría:
+
+export const stylesGlobals = {
+  display: "flex",
+  justifyContent: "space-between"
+};
+
+Y en el archivo del componente pondríamos:
+
+import { stylesGlobals } from "-/styles/styles";
+
+<Box component="div" sx={stylesGlobals}>
+  <Typography>HOLA</Typography>
+  <Typography>adios</Typography>
+</Box>
+
+
+Si utilizo como tal la etiqueta div, en lugar de usar la propiedad sx, utilizo la propiedad style. Por ejemplo:
+<div
+  style={{
+    display: "flex",
+    justifyContent: "space.between"
+  }}
+>
+  <p>Hola</p>
+</div>
+
+
+
+Para manejar diferentes estilos para los tamaños de pantallas, en lugar de usar los media queries, Material UI utiliza etiquetas como xs (xtra small), s (small), md (medium), l (large), xl (xtra large)
+
+La forma de ponerlo es:
+sx={{ 
+  display: { xs: "none", md: "block" }, //Objeto de tamaños de pantallas
+  //Más estilos
+}}
+
+El stack que manejamos es MERN (Mongo, Express, React, Node).
+
+Existen lo que se llama estados locales y estados globales.
+Los estados locales (useState) solo son estados de un solo componente.
+Por ejemplo en Login donde se creará un estado para guardar contraseña y correo para utilizarlos en una API.
+Los globales  son reutilizables o dependen de otros componentes.
+Por ejemplo usuarios y clientes
+
+El manejo de las APIs serán globales. 
 ________________________________________________________________________________________________
+
 ________________________________________________________________________________________________
+
 ________________________________________________________________________________________________
